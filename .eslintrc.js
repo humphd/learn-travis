@@ -1,23 +1,19 @@
 module.exports = {
     env: {
-        node: true
+        // We're running in a node.js environment
+        node: true,
+        // We're using the Jest testing library, and its global functions
+        'jest/globals': true
     },
     extends: [
-        'eslint:recommended',
-        'prettier'
+        'eslint:recommended'
     ],
     plugins: [
-        'prettier'
+        'jest'
     ],
     rules: {
-        // Custom prettier rules
-        'prettier/prettier': [
-            'error', {
-                singleQuote: true, 
-                trailingComma: 'all',
-            }
-        ],
         // Custom eslint rules
-        eqeqeq: ['error', 'always']
+        eqeqeq: ['error', 'always'],
+        'no-console': ['warn']
     }
 };
