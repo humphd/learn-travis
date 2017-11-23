@@ -1,6 +1,6 @@
 {
   "name": "learn-travis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An example to show how to get TravisCI integrated",
   "main": "./src/index.js",
   "bin": "./bin/index.js",
