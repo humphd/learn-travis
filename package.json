@@ -1,0 +1,15 @@
+{
+  "name": "learn-travis",
+  "version": "1.0.0",
+  "description": "An example to show how to get TravisCI integrated",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humphd/learn-travis.git"
+  },
+  "author": "humphd",
+  "license": "MIT"
+}
