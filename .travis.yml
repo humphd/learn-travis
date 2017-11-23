@@ -8,6 +8,6 @@ node_js:
 cache:
   directories:
     - "node_modules"
-before_install
+before_install:
   - sudo apt-get -qq update
   - sudo apt-get install graphicsmagick
