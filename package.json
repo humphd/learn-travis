@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./src"
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -15,6 +16,8 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^4.11.0",
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-prettier": "^2.8.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "prettier": "^1.8.2"
   }
 }
