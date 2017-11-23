@@ -1,17 +1,16 @@
 var twitterProfileConverter = require('../src');
 var path = require('path');
-var fs = require('fs');
 
 test('@Twitter profile pic should match known version', function(done) {
-  var pathToTwitterTxt = path.join(__dirname, 'Twitter.txt');
+  var pathToTwitterJpg = path.join(__dirname, 'Twitter.jpg');
 
-  fs.readFile(pathToTwitterTxt, 'utf8', function(err, data) {
+  twitterProfileConverter.convert(pathToTwitterJpg, function(err, a) {
     expect(err).not.toBeDefined;
-    expect(data).toBeDefined;
+    expect(a).toBeDefined;
 
-    twitterProfileConverter.load('Twitter', function(err, ascii) {
+    twitterProfileConverter.load('Twitter', function(err, b) {
       expect(err).not.toBeDefined;
-      expect(ascii).toEqual(data);
+      expect(b).toEqual(a);
 
       done();
     });
