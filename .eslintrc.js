@@ -13,7 +13,12 @@ module.exports = {
     ],
     rules: {
         // Custom eslint rules
-        eqeqeq: ['error', 'always'],
+        'indent': ['error', 2],
+        'linebreak-style': ['error', 'unix'],
+        'quotes': ['error', 'single'],
+        'semi': ['error', 'always'],
+        'eqeqeq': ['error', 'always'],
+   
         'no-console': ['warn']
     }
 };
