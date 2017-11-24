@@ -1,4 +1,4 @@
-var twitterProfileConverter = require('../src');
+var twitterProfileConverter = require('../src/image');
 var path = require('path');
 
 test('@Twitter profile pic should match known version', function(done) {

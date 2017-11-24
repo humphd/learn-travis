@@ -1,7 +1,7 @@
 /* https://eslint.org/docs/rules/no-console#when-not-to-use-it */
 /* eslint no-console:0 */
 
-var twitterProfileConverter = require('../src');
+var twitterProfileConverter = require('../src/image');
 
 // Expect a Twitter username as the second arg:
 // node index.js <twitter-name>
