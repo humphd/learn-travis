@@ -4,14 +4,17 @@
   "description": "An example to show how to get TravisCI integrated",
   "scripts": {
     "start": "node ./src/server.js",
-    "test": "npm run lint && jest --verbose",
-    "test-coverage": "jest --coverage",
-    "lint": "eslint .",
+    "test": "npm run lint && jest",
+    "lint": "eslint src test",
     "lint-fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/humphd/learn-travis.git"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true
   },
   "author": "humphd",
   "license": "MIT",
