@@ -14,10 +14,10 @@ if(!twitterName) {
 }
 
 twitterProfileConverter.load(twitterName, function(err, ascii) {
-    if(err) {
-        console.error('Unable to load profile image:', twitterName);
-        process.exit(1);
-    }
+  if(err) {
+    console.error('Unable to load profile image:', twitterName);
+    process.exit(1);
+  }
 
-    console.log(ascii);
+  console.log(ascii);
 });

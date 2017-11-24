@@ -13,27 +13,27 @@
  * Also support passing a leading @... since that's so common
  */
 function validateUsername(twitterName) {
-    if(!twitterName) {
-        return null;
-    }
+  if(!twitterName) {
+    return null;
+  }
 
-    // Strip leading @ if present
-    twitterName = twitterName.replace(/^@/, '');
+  // Strip leading @ if present
+  twitterName = twitterName.replace(/^@/, '');
 
-    if(!(/^[A-Za-z0-9_]{1,15}$/.test(twitterName))) {
-        return null;
-    }
+  if(!(/^[A-Za-z0-9_]{1,15}$/.test(twitterName))) {
+    return null;
+  }
 
-    return twitterName;
+  return twitterName;
 }
 
 // From https://gist.github.com/jcsrb/1081548#gistcomment-1493078
 function getProfileUrl(twitterName) {
-    twitterName = validateUsername(twitterName);
-    if(!twitterName) {
-        return null;
-    }
-    return "https://twitter.com/" + twitterName + "/profile_image?size=original";
+  twitterName = validateUsername(twitterName);
+  if(!twitterName) {
+    return null;
+  }
+  return 'https://twitter.com/' + twitterName + '/profile_image?size=original';
 }
 
 exports.getProfileUrl = getProfileUrl;

@@ -1,14 +1,14 @@
-var twitterProfileConverter = require('../src/image');
+var image = require('../src/image');
 var path = require('path');
 
 test('@Twitter profile pic should match known version', function(done) {
   var pathToTwitterJpg = path.join(__dirname, 'Twitter.jpg');
 
-  twitterProfileConverter.convert(pathToTwitterJpg, function(err, a) {
+  image.convert(pathToTwitterJpg, function(err, a) {
     expect(err).toBeFalsy();
     expect(a).toBeDefined();
 
-    twitterProfileConverter.load('Twitter', function(err, b) {
+    image.load('Twitter', function(err, b) {
       expect(err).toBeFalsy();
       expect(b).toEqual(a);
 
