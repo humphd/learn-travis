@@ -43,3 +43,9 @@ test('Passing a leading @ should be OK', function() {
 
     expect(nameWith).toEqual(nameWithout);    
 });
+
+test('URL should be correct format', function() {
+    var name = 'Twitter';
+    var url = "https://twitter.com/" + name + "/profile_image?size=original";
+    expect(twitter.getProfileUrl(name)).toEqual(url);
+});
