@@ -2,11 +2,12 @@
   "name": "learn-travis",
   "version": "1.0.1",
   "description": "An example to show how to get TravisCI integrated",
-  "main": "./src/index.js",
-  "bin": "./bin/index.js",
   "scripts": {
-    "test": "npm run lint && jest",
-    "lint": "eslint ."
+    "start": "node ./src/server.js",
+    "test": "npm run lint && jest --verbose",
+    "test-coverage": "jest --coverage",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,11 @@
   "devDependencies": {
     "eslint": "^4.11.0",
     "eslint-plugin-jest": "^21.3.2",
-    "jest": "^21.2.1"
+    "jest": "^21.2.1",
+    "supertest": "^3.0.0"
   },
   "dependencies": {
+    "express": "^4.16.2",
     "image-to-ascii": "^3.0.9"
   }
 }
