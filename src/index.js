@@ -1,9 +1,5 @@
 var imageToAscii = require('image-to-ascii');
-
-// From https://gist.github.com/jcsrb/1081548#gistcomment-1493078
-function getTwitterProfileUrl(twitterName) {
-  return "https://twitter.com/" + twitterName + "/profile_image?size=original";
-}
+var twitter = require('./twitter');
 
 /**
  * Convert an image path or url to a black-and-white ASCII image 30 high
@@ -30,7 +26,7 @@ function convert(pathOrUrl, callback) {
  * @param {Function} callback (err, ascii) 
  */
 function load(twitterName, callback) {
-  var url = getTwitterProfileUrl(twitterName);
+  var url = twitter.getProfileUrl(twitterName);
   convert(url, callback);
 }
 
