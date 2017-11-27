@@ -3,7 +3,8 @@ var twitter = require('./twitter');
 var cache = require('./cache');
 
 /**
- * Convert an image path or url to a black-and-white ASCII image 30 high
+ * Convert an image path or url to a black-and-white ASCII image 30 high.
+ * Values are managed in a redis cache based on filename/url.s
  * @param {String} pathOrUrl a filesystem path or URL
  * @param {Function} callback (err, ascii)
  */
@@ -23,12 +24,13 @@ function convert(pathOrUrl, callback) {
       return callback(err);
     }
 
-    // Cache hit, return it
+    // If there is a cache hit, return it
     if(ascii) {
       return callback(null, ascii, /*cached=*/ true);
     }
 
-    // Cache miss, go to network instead, then cache result
+    // Cache miss, go to network instead, then cache result.
+    // NOTE: image-to-ascii can throw if pathOrUrl don't exist, wrap in try/catch
     try {
       imageToAscii(pathOrUrl, options, function(err, ascii) {
         if(err) {
