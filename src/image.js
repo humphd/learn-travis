@@ -4,7 +4,7 @@ var cache = require('./cache');
 
 /**
  * Convert an image path or url to a black-and-white ASCII image 30 high.
- * Values are managed in a redis cache based on filename/url.s
+ * Values are managed in a redis cache based on filename/url
  * @param {String} pathOrUrl a filesystem path or URL
  * @param {Function} callback (err, ascii)
  */
@@ -19,6 +19,7 @@ function convert(pathOrUrl, callback) {
     }
   };
 
+  // Start by looking in the cache for this URL
   cache.get(pathOrUrl, function(err, ascii) {
     if(err) {
       return callback(err);
@@ -29,7 +30,7 @@ function convert(pathOrUrl, callback) {
       return callback(null, ascii, /*cached=*/ true);
     }
 
-    // Cache miss, go to network instead, then cache result.
+    // Cache missed, so go to network instead, then cache result.
     // NOTE: image-to-ascii can throw if pathOrUrl don't exist, wrap in try/catch
     try {
       imageToAscii(pathOrUrl, options, function(err, ascii) {
@@ -37,10 +38,12 @@ function convert(pathOrUrl, callback) {
           return callback(err);
         }
   
+        // Store result in cache and return via callback.
         cache.set(pathOrUrl, ascii);
         callback(null, ascii);
       });  
     } catch(e) {
+      // Deal with this sychronous error as though it happened async via callback.
       callback(e);
     }
   });

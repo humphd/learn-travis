@@ -37,4 +37,5 @@ function getProfileUrl(twitterName) {
 }
 
 exports.getProfileUrl = getProfileUrl;
+// Provide convenience function for checking whether a name is valid
 exports.isValidName = function(name) { return !!validateName(name); };
