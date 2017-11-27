@@ -36,11 +36,21 @@ test('Server should respond with cached content on multiple hits', function(done
 });
 
 test('Unknown profile name should result in 404', function(done) {
-  var nobody = '/profile/NotSenecaCollege';
+  var nobody = '/profile/CenecaSollege';
     
   request(app).get(nobody).end(function(err, res) {
     expect(err).toBeFalsy();
     expect(res.status).toEqual(404);
+    done();
+  });
+});
+
+test('Invalid profile name should result in 400', function(done) {
+  var nobody = '/profile/NameIsTooLongForTwitter';
+    
+  request(app).get(nobody).end(function(err, res) {
+    expect(err).toBeFalsy();
+    expect(res.status).toEqual(400);
     done();
   });
 });

@@ -37,3 +37,7 @@ function getProfileUrl(twitterName) {
 }
 
 exports.getProfileUrl = getProfileUrl;
+
+exports.isValidName = function(name) {
+  return !!validateUsername(name);
+};
