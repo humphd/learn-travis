@@ -6,7 +6,7 @@
     "start": "node ./src/server.js",
     "test": "npm run lint && jest",
     "lint": "eslint src test",
-    "lint-fix": "eslint --fix ."
+    "lint-fix": "eslint --fix src test"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,8 @@
   },
   "jest": {
     "verbose": true,
-    "collectCoverage": true
+    "collectCoverage": true,
+    "forceExit": true
   },
   "author": "humphd",
   "license": "MIT",
@@ -26,6 +27,7 @@
   },
   "dependencies": {
     "express": "^4.16.2",
-    "image-to-ascii": "^3.0.9"
+    "image-to-ascii": "^3.0.9",
+    "redis": "^2.8.0"
   }
 }
