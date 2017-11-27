@@ -69,7 +69,7 @@ Our first task will be to define and install our dependencies, both those we'll 
 * [express](https://www.npmjs.com/package/express) to create our web service
 * [image-to-ascii](https://www.npmjs.com/package/image-to-ascii) to convert images to ASCII text
 * [redis](https://www.npmjs.com/package/redis) to create a cache
-* [jest]((https://www.npmjs.com/package/jest) to write unit tests
+* [jest](https://www.npmjs.com/package/jest) to write unit tests
 * [eslint](https://www.npmjs.com/package/eslint) to lint our code
 * [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest) to integrate our linting with our jest tests.
 * [supertest](https://www.npmjs.com/package/supertest) to help us write tests against our web service.
