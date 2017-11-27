@@ -20,4 +20,5 @@ image.load(twitterName, function(err, ascii) {
   }
 
   console.log(ascii);
+  process.exit(0);
 });
