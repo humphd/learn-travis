@@ -1,5 +1,6 @@
 var imageToAscii = require('image-to-ascii');
 var twitter = require('./twitter');
+var cache = require('./cache');
 
 /**
  * Convert an image path or url to a black-and-white ASCII image 30 high
@@ -17,7 +18,30 @@ function convert(pathOrUrl, callback) {
     }
   };
 
-  imageToAscii(pathOrUrl, options, callback);
+  cache.get(pathOrUrl, function(err, ascii) {
+    if(err) {
+      return callback(err);
+    }
+
+    // Cache hit, return it
+    if(ascii) {
+      return callback(null, ascii, /*cached=*/ true);
+    }
+
+    // Cache miss, go to network instead, then cache result
+    try {
+      imageToAscii(pathOrUrl, options, function(err, ascii) {
+        if(err) {
+          return callback(err);
+        }
+  
+        cache.set(pathOrUrl, ascii);
+        callback(null, ascii);
+      });  
+    } catch(e) {
+      callback(e);
+    }
+  });
 }
 
 /**

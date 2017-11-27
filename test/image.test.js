@@ -16,3 +16,23 @@ test('@Twitter profile pic should match known version', function(done) {
     });
   });
 });
+
+test('Multiple loads of a URL results in cached copy being returned', function(done) {
+  var url = 'https://twitter.com/SenecaCollege/profile_image?size=original';
+
+  // First load, shouldn't be cached.
+  image.convert(url, function(err, a, cached) {
+    expect(err).toBeFalsy();
+    expect(a).toBeDefined();
+    expect(cached).toBeFalsy();
+
+    // Second load, should be cached.
+    image.convert(url, function(err, a, cached) {
+      expect(err).toBeFalsy();
+      expect(a).toBeDefined();
+      expect(cached).toBeTruthy();
+
+      done();
+    });
+  });
+});
