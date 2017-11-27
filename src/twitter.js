@@ -12,7 +12,7 @@
  * 
  * Also support passing a leading @... since that's so common
  */
-function validateUsername(twitterName) {
+function validateName(twitterName) {
   if(!twitterName) {
     return null;
   }
@@ -20,16 +20,16 @@ function validateUsername(twitterName) {
   // Strip leading @ if present
   twitterName = twitterName.replace(/^@/, '');
 
-  if(!(/^[A-Za-z0-9_]{1,15}$/.test(twitterName))) {
-    return null;
+  if(/^[A-Za-z0-9_]{1,15}$/.test(twitterName)) {
+    return twitterName;
   }
-
-  return twitterName;
 }
 
-// From https://gist.github.com/jcsrb/1081548#gistcomment-1493078
+// See discussions:
+// * https://stackoverflow.com/questions/18381710/building-twitter-profile-image-url-with-twitter-user-id
+// * https://gist.github.com/jcsrb/1081548#gistcomment-1493078
 function getProfileUrl(twitterName) {
-  twitterName = validateUsername(twitterName);
+  twitterName = validateName(twitterName);
   if(!twitterName) {
     return null;
   }
@@ -37,7 +37,4 @@ function getProfileUrl(twitterName) {
 }
 
 exports.getProfileUrl = getProfileUrl;
-
-exports.isValidName = function(name) {
-  return !!validateUsername(name);
-};
+exports.isValidName = function(name) { return !!validateName(name); };
