@@ -15,7 +15,10 @@
   "jest": {
     "verbose": true,
     "collectCoverage": true,
-    "forceExit": true
+    "forceExit": true,
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/nock"
+    ]
   },
   "author": "humphd",
   "license": "MIT",
@@ -23,6 +26,7 @@
     "eslint": "^4.11.0",
     "eslint-plugin-jest": "^21.3.2",
     "jest": "^21.2.1",
+    "nock": "^9.1.3",
     "supertest": "^3.0.0"
   },
   "dependencies": {
