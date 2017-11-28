@@ -1,0 +1,30 @@
+@@@8L1i;;;;;;;;ii;;;;ii;iiiiiiiii;;;iii;ii;;;;;;;;;;;i1L8@@@
+@@t;itLLLLLLLLL1iLLLLt;Lt;Lf;LL;fLLLL;tLi1LLLLLLLLLLLLti;t@@
+8;;LLLLLLLLLffL1iLffLtiLf1LfiffifLfLL1fLi1LffLffLffLffLLL;;8
+;:LLLLLLLLLL;iL;;Li:L1:LLLLt:ff:fL,1LLLL:iL;iL;:Li:L1:LLLL:;
+ fLLLL;1LLLLiiLLLLLLLLLLLLLffffffLLLLLLLLLLi1LLLLLLLtiLLLLf 
+ fLLLLitLLLL11LLLLLLLLf1i;;;;;;;;;;i1fLLLLLi1LLLLLLLtiLLfLf 
+ fLLLLLLLLLLLLL;:LLLf;:;;iiiiiiiiii;;:;fLLL;;L;:LLLL1;Lt:Lf 
+ fLLLLitLLLLLLLLLLL1,;iiiiiiiiiiiiiiii;,1LLLLLLLL1iLtiLtiLf 
+ fLLLLitLLLLLLLLLLt,iiiiiiiiiiiiiiiiiiii,tLLLLLLL1iLtiLt;Lf 
+ fL:1LLLLLLLLLL;;L:;1iiiiiiiiiiiiiiiiii1;:L;iLLLLLLLLLLLLLf 
+ fLitL1tLLLLLLL1iL,;iiiiiiiiiiiiiiiiiiii;:Li1LLLLt1LLLLf1Lf 
+ fL;tL;1LLLLLLLiiL:;iiiiiiiiiiiiiiiiiiii;:LiiLLLL1;LLLLt;Lf 
+ fLLLLLLLLLLLLfLLL::i;iiiiiiiiiiiiiiiii1::LLLfLLLLLL1:Lt:Lf 
+ fLLLL1fLLLLf,:;;i:;1Cfii1ii1ii11ii1ii1i;:i;;:,fLLLLffLftLf 
+ fLLLL;1LLLLL1;;:;ii1G0L0GL0G0C0GL0LtC8Lii;;;;1LLLLLLLLLLLf 
+ fLLLL;1L:iL;iLLf1,i1tLtfftLtftLftLffLffi,1fLLi;LLLLLLLLLLf 
+ fLLLLtfLtfLttLLLt,iiiiiiiiiiiiiiiiiiiiii,tLLLttLLLLLLLLLLf 
+ fLLLLLLLLLLLLLLi,iiiiiiiiiiiiiiiiiiiiiiii,iLLLLLLLLLLLLLLf 
+ fLLLLLLL;1LLLt::iiiiiiiiiiiiiiiiiiiiiiiiii::tLLLLLL1;Lt;Lf 
+ fLLLLfLL11ti;:i1iiiiiiiiiiiiiiiiiiiiiiiiii1i:;itfLLt1Lf1Lf 
+ fLLLL:1t,::;i1iiiiiiiiiiiiiiiiiiiiiiiiiiiiii1i;::,1LLLLLLf 
+ fLLLLitLt1ii;:iiiiiiiiiiiiiiiiiiiiiiiiiiiiii:;;i1tLt;Lt;Lf 
+ fLLLLitLLLLLLi,;;;;;;;iiiiiiiiiiiiii;;;;;;;,iLLLLLLtiLtiLf 
+ fLLLL;1LLLL:;LtttfLtt1;:;iiiiiiii;:;ittfftttLLLLLLLLLL1:Lf 
+ fLLLLitL1tLLLLt1Lt1Lf1Lti;;;;;;;;itLLLLLLL1tL11Lt1LtiLLfLf 
+ fLLLL;tL;1LLLLiiL1;L1;LLLLLfffffLLLLLLLLLLiiLiiL1;L1;LLLLf 
+;:LLLLLLLLLL:;LLLL1;L1:LLLLt:fLLLLLLL:1LLLLLLLi;LLLLLLLLLL:;
+8;;LLLLLLLLLffLLLL1iLffLLLLLfLf1fLLLLitL1tL1tLffLLLLLLLLL;;8
+@@t;itLLLLLLLLLLLL1iLLLLLLLLLLf;fLLLL;tL;1CiiLLLLLLLLLti;f@@
+@@@8L1i;;;;;;;;;;;ii;;;;;;;;;;iii;;;iii;ii;ii;;;;;;;;i1L8@@@
