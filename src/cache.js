@@ -1,17 +1,29 @@
 /* eslint-disable no-console */
 
-// Only use cache if redis is present
-var client = (function() {
-  var redis;
-
-  try {
-    redis = require('redis');    
-    client = redis.createClient();
-    return client;
-  } catch(e) {
-    console.warn('Unable to create redis client, skipping');
-  }
+var redis = require('redis');
+var client = redis.createClient();
+// Shim implementation of the redis client, in case we can't get one.
+var fakeRedisClient = (function() {
+  /* eslint-disable no-unused-vars */
+  return {
+    get: function(key, callback) {
+      callback(null, null);
+    },
+    set: function(key, ttl, value) {
+      return;
+    },
+    keys: function(pattern, callback) {
+      var emptyKeyList = [];
+      callback(null, emptyKeyList);
+    }
+  };
 }());
+
+// Only use cache if redis is present
+client.on('error', function(err) {
+  console.warn('[redis cleint error]', err);
+  client = fakeRedisClient;
+});
 
 // Namespace for all redis keys in the cache
 var KEY_PREFIX = 'learntravis:';
