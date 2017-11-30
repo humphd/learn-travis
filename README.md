@@ -70,9 +70,10 @@ Our first task will be to define and install our dependencies, both those we'll 
 * [image-to-ascii](https://www.npmjs.com/package/image-to-ascii) to convert images to ASCII text
 * [redis](https://www.npmjs.com/package/redis) to create a cache
 * [jest](https://www.npmjs.com/package/jest) to write unit tests
+* [supertest](https://www.npmjs.com/package/supertest) to help us write tests against our web service.
+* [nock](https://www.npmjs.com/package/nock) to create mock (i.e., simulated) network responses in our tests from the Twitter API
 * [eslint](https://www.npmjs.com/package/eslint) to lint our code
 * [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest) to integrate our linting with our jest tests.
-* [supertest](https://www.npmjs.com/package/supertest) to help us write tests against our web service.
 
 In node the common way to install these dependencies is to define them in a `package.json` file, each with an associated [version number or range](https://docs.npmjs.com/getting-started/semantic-versioning):
 
@@ -234,3 +235,114 @@ Finally, we need to automate `eslint` to run.  There are lots of ways to do this
 Here we've got two scripts defined: `test` and `lint`.  Why two?  Doesn't `test` just call `lint`?  Why not just have one?  The answer is flexibility.  We might want to `lint` our code without running other tests.  Also, we will eventually want to compose a number of scripts into a single `test` run for our whole test suite; `lint` will be the first part of this.
 
 Now when TravisCI runs `npm test` in a build, it will run the `lint` command will will in turn run `eslint` on our `src/` and `test/` directories.
+
+## Testing
+
+### Why Test?
+
+With our installation automated via `npm install`, and our code linting in place via `eslint`, it's time to move on to testing.
+
+Testing as such is too large of a topic for us to cover in detail now.  Our goal is to get a set of automated tests running in Travis, and to have the result of those tests to get reported back to GitHub.
+
+Why is this important?  First, we want to automate our test suite in order to guarantee that it gets run.  If we leave it up to manual processes, in all likelihood the burden to run the tests will often mean we choose not to do so.  We want to put the burden of running our tests on an automated process with infinite patience vs in the hands of people who are in a hurry.
+
+Second, we want to automate our tests so that we can better support parallel development on a project by a large number of individuals.  We want to try and keep our source code in a working state (buildable, lint free, all tests pass).  When our tests break, it's usually a sign that something in our code is broken (broken tests can sometimes be the fault of the tests, not our code), and that we should investigate.  When we allow things to remain in a broken state, we waste everyone's time, because it becomes difficult to keep working on other things that may depend on the now broken code.
+
+Writing tests for new features as well as bug fixes is a good habit for software projects (open or closed).  Having an easy to use and fast way to automatically run our tests and see the results helps to encourage this practice.
+
+### Writing Some Tests
+
+For the purposes of this example, we're going to use a few common node.js testing modules:
+
+* [Jest](https://facebook.github.io/jest/)
+* [Supertest](https://github.com/visionmedia/supertest)
+* [Nock](https://github.com/node-nock/nock)
+
+We'll write a variety of tests, all of which you can see in the `tests/` directory. Our tests will attempt to push our code in every direction possible, and try to deal with both acceptable and unacceptable data alike.  We'll also use a mix of real and simulated (i.e., mocked) API calls to twitter.com, to look at different ways of working with external resources under testing conditions.
+
+Jest will be [responsible for running all of our tests](https://facebook.github.io/jest/docs/en/cli.html#content), something it does very well without much guidance.  However, as has been our way up to this point, we'll also provide an explicit set of configuration options in "code" that allow our testing environment to get versioned in git.
+
+Jest can be [configured via additions to our `package.json`](https://facebook.github.io/jest/docs/en/configuration.html#content) file.  We'll provide a few configuration options to tell it what we'd like to happen when tests are run:
+
+```
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "forceExit": true
+  }
+```
+
+Here, we've told Jest to be `verbose` with its output (i.e., we'd like to see as much info on what's happening as possible), that we want it to collect test coverage data (i.e., to determine which parts of our code aren't getting tested), and that we always want it to quit when it's done (i.e., always report back a pass/fail vs. hanging for some reason).
+
+Next we need to automate the running of Jest everytime we need our tests to run.  Like we did with `eslint`, we'll do that via an `npm` script in `package.json`:
+
+```
+ "scripts": {
+    "lint": "eslint src test",
+    "jest": "jest",
+    "test": "npm run lint && npm run jest",
+    ...
+```
+
+We've now got a series of `scripts` we can `run` via `npm`.  If we only want to lint our code we can use `npm run lint`.  If we only want to see our tests run, `npm run jest`.  And finally, if we want to run our entire suite of tests, we'll use `npm test`, which in turn runs each of the other two one after the other.
+
+So what do we need to do in order to get Travis to run our `npm test` command? Nothing.  Our choice of `test` for this all-encompassing command was deliberate: `npm`-based node projects [assume that `npm test` is how you run the test suite](https://docs.npmjs.com/cli/test). And by extension, this is what Travis will do when it runs a node.js project via automation. By writing our tests in terms of the defaults assumed by the language, we've created a simple way for our project to get tested within the context of a developer's machine, but also via automation.
+
+## Automatic Deployment of a Staging Server
+
+There are lots of other things we could do automatically with Travis.  One final task we'll add is deployment.  It would be nice if we always had a working version of our `master` branch running on a public server, so we can test things.  Having a live "staging" server is a common approach projects take to make it easy to test things without having to build and run the latest code locally.
+
+Lots of cloud providers will let you [deploy your code from Travis](https://docs.travis-ci.com/user/deployment), and most offer some kind of free version, which is perfect for testing out a staging server.  We'll use [Heroku](https://heroku.com) and their [free tier](https://www.heroku.com/free) (i.e., we won't spend any money on this).
+
+After creating an account on [Heroku](https://heroku.com), and adding a new app named `learn-travis` via the [dashboard](https://devcenter.heroku.com/articles/heroku-dashboard), we'll [install the Heroku cli tool](https://devcenter.heroku.com/articles/heroku-cli) and the [the Travis cli tool](https://github.com/travis-ci/travis.rb#installation).  Using these we can securely [create a deployment config for Heroku](https://docs.travis-ci.com/user/deployment/heroku/).
+
+The first step is to encrypt our authentication token, so that Travis can deploy on our behalf, but we won't store our password in GitHub:
+
+```
+$ travis encrypt $(heroku auth:token) --add deploy.api_key
+```
+
+And now my `.travis.yml` file contains the following:
+
+```
+deploy:
+  provider: heroku
+  api_key:
+    secure: oFXC5D8PCoxn...(truncated due to length)
+  app: learn-travis
+```
+
+This is the info Travis needs to deploy my code after a successful build (i.e., all tests pass).
+
+Next I need to tell Heroku about the binary dependenies I need for the `image-to-ascii`.  It uses a number of libraries that need to exist in the operating system, all of which I'll add to an `Aptfile`:
+
+```
+graphicsmagick
+libpng-dev
+zlib1g-dev
+libjasper-dev
+libjasper1
+```
+
+Next I'll tell Heroku to add a [buildpack](https://devcenter.heroku.com/articles/buildpacks) to install my OS `apt-get` dependencies:
+
+```
+$ heroku git:remote -a learn-travis
+$ heroku buildpacks:add --index 1 https://github.com/heroku/heroku-buildpack-apt
+```
+
+Finally, I'll include a [Procfile](https://devcenter.heroku.com/articles/procfile) to tell Heroku how to start our server.
+
+```
+web: node src/server.js
+```
+
+I can now push everything to GitHub, and Travis will take over.  My dependencies will get installed, my code linted, my tests run, and if all that works, then my app will get deployed to Heroku and I'll be able to access it here:
+
+https://learn-travis.herokuapp.com/profile/Twitter
+
+NOTE: if that URL doesn't work right away, it probably means that my "free" server isn't started yet (Heroku stops free servers when not in use for 30 mins, and restarts them when someone makes a new request).
+
+You can see an example build that did everything I just mentioned here:
+
+https://travis-ci.org/humphd/learn-travis/builds/309704482

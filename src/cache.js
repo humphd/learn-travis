@@ -22,6 +22,7 @@ var fakeRedisClient = (function() {
 // Only use cache if redis is present
 client.on('error', function(err) {
   console.warn('[redis cleint error]', err);
+  // Swap out for the fake shim client instead.
   client = fakeRedisClient;
 });
 
