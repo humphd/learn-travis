@@ -21,7 +21,8 @@ app.get('/profile/:twitterName', function(req, res) {
   // if available.
   image.load(twitterName, function(err, ascii, cached) {
     if(err) {
-      res.status(404).send('Unable to lod profile image.');
+      console.log('[image load error]', err);
+      res.status(404).send('Unable to load profile image.');
       return;
     }
 
