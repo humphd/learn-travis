@@ -33,6 +33,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "image-to-ascii": "^3.0.9",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "version-healthcheck": "^0.1.2"
   }
 }

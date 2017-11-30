@@ -1,7 +1,12 @@
 var image = require('./image');
 var twitter = require('./twitter');
+
+var version = require('version-healthcheck');
 var express = require('express');
 var app = express();
+
+// Provide a basic healthcheck route, see https://www.npmjs.com/package/version-healthcheck
+app.get('/healthcheck', version);
 
 app.get('/profile/:twitterName', function(req, res) {
   // Get the Twitter profile name off the URL and validate it 
