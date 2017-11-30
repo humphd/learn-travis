@@ -3,7 +3,7 @@ var nock = require('nock');
 var image = require('../src/image');
 var cache = require('../src/cache');
 
-beforeAll(function(done) {
+beforeEach(function(done) {
   cache._clear(done);
 });
 

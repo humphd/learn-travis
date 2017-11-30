@@ -7,11 +7,11 @@ var image = require('../src/image');
 var request = require('supertest');
 var cache = require('../src/cache');
 
-beforeAll(function(done) {
-  cache._clear(done);
-});
-
 describe('App tests mocked against Twitter URL API', function () {
+
+  beforeEach(function(done) {
+    cache._clear(done);
+  });
 
   test('Server should provide ascii profile images', function(done) {
     var pathToTwitterJpg = path.join(__dirname, 'Twitter.jpg');
@@ -83,14 +83,14 @@ describe('App tests mocked against Twitter URL API', function () {
     });
   });
 
-});
-
-test('Invalid profile name should result in 400', function(done) {
-  var nobody = '/profile/NameIsTooLongForTwitter';
-    
-  request(app).get(nobody).end(function(err, res) {
-    expect(err).toBeFalsy();
-    expect(res.status).toEqual(400);
-    done();
+  test('Invalid profile name should result in 400', function(done) {
+    var nobody = '/profile/NameIsTooLongForTwitter';
+      
+    request(app).get(nobody).end(function(err, res) {
+      expect(err).toBeFalsy();
+      expect(res.status).toEqual(400);
+      done();
+    });
   });
+  
 });
