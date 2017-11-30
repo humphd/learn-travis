@@ -191,24 +191,28 @@ We've already dealt with 1. above when we specified our dependencies.  For 2. we
 
 ```js
 module.exports = {
-    env: {
-        // 1. We're running in a node.js environment
-        node: true
-    },
-    extends: [
-        // 2. We'll begin with the recommended set of rules
-        'eslint:recommended'
-    ],
-    rules: {
-        // 3. We'll customize the rules a bit to our liking
-        'indent': ['error', 2],
-        'linebreak-style': ['error', 'unix'],
-        'quotes': ['error', 'single'],
-        'semi': ['error', 'always'],
-        'eqeqeq': ['error', 'always'],
-   
-        'no-console': ['warn']
-    }
+  env: {
+    // We're running in a node.js environment
+    node: true,
+    // We're using the Jest testing library, and its global functions
+    'jest/globals': true
+  },
+  extends: [
+    'eslint:recommended'
+  ],
+  plugins: [
+    'jest'
+  ],
+  rules: {
+    // Custom eslint rules
+    'indent': ['error', 2],
+    'linebreak-style': ['error', 'unix'],
+    'quotes': ['error', 'single'],
+    'semi': ['error', 'always'],
+    'eqeqeq': ['error', 'always'],
+
+    'no-console': ['warn']
+  }
 };
 ```
 

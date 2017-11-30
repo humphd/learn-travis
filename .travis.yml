@@ -1,18 +1,23 @@
 sudo: false
 language: node_js
 node_js:
-  - "6"
-  - "7"
-  - "8"
-  - "node"
+- '6'
+- '7'
+- '8'
+- node
 env:
-  - CACHE_TIMEOUT_SECONDS=5
+- CACHE_TIMEOUT_SECONDS=5
 cache:
   directories:
-    - "node_modules"
+  - node_modules
 addons:
   apt:
     packages:
     - graphicsmagick
 services:
-  - redis
+- redis
+deploy:
+  provider: heroku
+  api_key:
+    secure: oFXC5D8PCoxn+taV0f38tkjfvUo5ahp4q8JzpOxPrv1QNywIuYkuTEpHdxrLaDbCirYieA3icpCSpR4afSl1rbLLBkra1swZSIJHDa7HVYsX1LNjh6igVpTSnDQyiN3RtLyxll8ngkywVSW+aAFGBdCDNr8KIyVlTjZvOynOW8H/OBKC8xFVjwXHVvGRSVu9WIHynbo1EffMKA2iZ4x3HaXdW8j4lHkVa9Qj/j1TSEjkpYfmmSxmTLHoaMhee/aoOmWHFpk88ApYqq/UHATp2vrkQxOWaH3Fn19uZePGRsM+zPTLZx6obFqel8OnqwtxNkPeKBaCARxUZvOTs0tHL32KvPRIHkUc7Oc/xEB2gp0yqz1gaEnFc+2FHMb3JXCW/6Jbfhw9AReqyQTiwhR+VjNivNTJGiSVNPBH4n/7qCuoIxGRRz+tg02bSmIEQprDRqeXQRX0zdF1xil1t5LnhAvpMqzOp4DA7S+z1DdY5Y399VclFG2bJTiuausluf/Netmc1TpWSS4DgcAaWMzjV2h3cwIwVrCJs48DYz8QGqTtK3l2hg7NANz5zk6mFzash+lUEyDSli/IFXYQuZynlaUQVfr0Od4iv2nswnWt3orESZMWrSPBuO34bejHiBd79oEk9EPaP3kTkilK7Il0WNr5SnySzi/cQ1Zray7cpQg=
+  app: my-app-123

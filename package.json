@@ -4,9 +4,10 @@
   "description": "An example to show how to get TravisCI integrated",
   "scripts": {
     "start": "node ./src/server.js",
-    "test": "npm run lint && jest",
     "lint": "eslint src test",
-    "lint-fix": "eslint --fix src test"
+    "lint-fix": "eslint --fix src test",
+    "jest": "jest",
+    "test": "npm run lint && npm run jest"
   },
   "repository": {
     "type": "git",
@@ -15,10 +16,7 @@
   "jest": {
     "verbose": true,
     "collectCoverage": true,
-    "forceExit": true,
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/nock"
-    ]
+    "forceExit": true
   },
   "author": "humphd",
   "license": "MIT",
