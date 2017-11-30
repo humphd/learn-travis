@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/humphd/learn-travis.svg?branch=master)](https://travis-ci.org/humphd/learn-travis)
+
 # Learn Travis
 
 ## Introduction
