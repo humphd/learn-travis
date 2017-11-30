@@ -165,7 +165,7 @@ https://travis-ci.org/humphd/learn-travis
 
 Within this, you can see a number of different historical and current views:
 
-* [The most recent build](https://travis-ci.org/humphd/learn-travis) including 
+* [The most recent build](https://travis-ci.org/humphd/learn-travis)
 * [All builds arranged in historical order](https://travis-ci.org/humphd/learn-travis/builds)
 
 There are also special views for different branches and pull requests, which we're not using at the moment.  Each build will include a link for any/all node.js runtime versions you specify, in our case there's a link for each of `6, 7, 8, node`.  Clicking on any of these will give a complete log of everything that happened during the build, and whether it is still running (yellow), finished and passed (green), or failed (red).
@@ -316,7 +316,7 @@ deploy:
 
 This is the info Travis needs to deploy my code after a successful build (i.e., all tests pass).
 
-Next I need to tell Heroku about the binary dependenies I need for the `image-to-ascii`.  It uses a number of libraries that need to exist in the operating system, all of which I'll add to an `Aptfile`:
+Next I found that I needed to tell Heroku about the binary dependenies for the `image-to-ascii` module (see [bug](https://github.com/mcollina/heroku-buildpack-graphicsmagick/issues/27)).  It uses a number of libraries that need to exist in the operating system, all of which I'll add to an `Aptfile`:
 
 ```
 graphicsmagick
