@@ -1,5 +1,17 @@
-var redis = require('redis');
-var client = redis.createClient();
+/* eslint-disable no-console */
+
+// Only use cache if redis is present
+var client = (function() {
+  var redis;
+
+  try {
+    redis = require('redis');    
+    client = redis.createClient();
+    return client;
+  } catch(e) {
+    console.warn('Unable to create redis client, skipping');
+  }
+}());
 
 // Namespace for all redis keys in the cache
 var KEY_PREFIX = 'learntravis:';
@@ -13,17 +25,29 @@ function prefixKey(key) {
 }
 
 exports.set = function(key, val) {
+  if(!client) {
+    return;
+  }
+
   key = prefixKey(key);
   client.setex(key, CACHE_TIMEOUT_SECONDS, val);
 };
 
 exports.get = function(key, callback) {
+  if(!client) {
+    return callback(null, null);
+  }
+
   key = prefixKey(key);
   client.get(key, callback);
 };
 
 // For testing, a way to clear all keys from the cache
 exports._clear = function(callback) {
+  if(!client) {
+    return callback(null, null);
+  }
+  
   client.keys(KEY_PREFIX + '*', function(err, keys) {
     if(err) {
       return callback(err);
