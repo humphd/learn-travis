@@ -1,6 +1,9 @@
 {
   "name": "learn-travis",
   "version": "1.0.1",
+  "engines": {
+    "node": "8.1.x"
+  },
   "description": "An example to show how to get TravisCI integrated",
   "scripts": {
     "start": "node ./src/server.js",
