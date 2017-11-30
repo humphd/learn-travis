@@ -9,7 +9,7 @@ var fakeRedisClient = (function() {
     get: function(key, callback) {
       callback(null, null);
     },
-    set: function(key, ttl, value) {
+    setex: function(key, ttl, value) {
       return;
     },
     keys: function(pattern, callback) {
